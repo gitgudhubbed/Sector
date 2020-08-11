@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_height="254dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <EditText
+            android:id="@+id/create_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:hint="@string/enter_first_name"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"></EditText>
+
+        <EditText
+            android:id="@+id/create_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:hint="@string/enter_surname"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"></EditText>
+
+        <EditText
+            android:id="@+id/create_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:hint="@string/enter_email_address"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/create_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:inputType="textPassword"
+            android:hint="@string/enter_a_password"
+            android:importantForAutofill="no"></EditText>
+
+        <EditText
+            android:id="@+id/create_postal_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="@dimen/margin_small"
+            android:hint="@string/enter_an_address"
+            android:importantForAutofill="no"
+            android:inputType="textPostalAddress" />
+
+        <Button
+            android:id="@+id/sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="@string/sign_up_new"/>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
