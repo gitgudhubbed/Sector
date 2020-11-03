@@ -1,24 +1,30 @@
 <resources>
+
+    //Main
     <string name="app_name">Sector</string>
     <string name="enter_email_address">Enter Email Address</string>
     <string name="enter_a_password">Enter Password</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up?</string>
+    //Sign up
     <string name="title_activity_sign_up">SignUpActivity</string>
-    <string name="enter_first_name">Frist Name</string>
+    <string name="enter_first_name">First Name</string>
     <string name="enter_surname">Surname</string>
     <string name="sign_up_new">Sign up</string>
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_testing">testing</string>
+    //Event creation
     <string name="job_type">Job Type</string>
     <string name="enter_job_type">Job Type</string>
     <string name="enter_venue_name">Venue Name</string>
-    <string name="enter_date">Date</string>
+    <string name="enter_start_date">Start Date</string>
+    <string name="enter_end_date">End Date</string>
     <string name="enter_start_time">Start time</string>
     <string name="enter_end_time">End time</string>
     <string name="enter_number_of_staff">Number of Staff</string>
     <string name="submit">Submit</string>
     <string name="event">Events</string>
+    //Menu
     <string name="my_profile">My Profile</string>
     <string name="calendar">Calendar</string>
     <string name="enter_an_address">Home Address</string>

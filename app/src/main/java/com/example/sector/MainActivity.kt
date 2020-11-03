@@ -3,6 +3,7 @@ package com.example.sector
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.Button
 import android.widget.Toast
@@ -11,9 +12,13 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+private const val TAG: String = "LOGIN_PAGE_LOG"
+
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+    //private lateinit var auth: FirebaseAuth
+
+    private val firebaseQuery: FirebaseQuery = FirebaseQuery()
 
     private lateinit var signUpButton : Button
     private lateinit var signInButton: Button
@@ -22,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        auth = FirebaseAuth.getInstance()
+        //auth = FirebaseAuth.getInstance()
 
         signUpButton = findViewById(R.id.sign_up_button)
         signUpButton.setOnClickListener{
@@ -32,47 +37,50 @@ class MainActivity : AppCompatActivity() {
 
         signInButton = findViewById(R.id.sign_in_button)
         signInButton.setOnClickListener{
-           loginUser()
+           firebaseQuery.loginUser(username,password)
+               .addOnCompleteListener {
+                   if(it.isSuccessful){
+                       Log.d(TAG, "sign-in success")
+                       //val user = firebaseQuery.firebaseAuth.currentUser
+                       //firebaseQuery.getUser() = auth.currentUser
+                       updateUI(firebaseQuery.getUser())
+                   }else {
+                       Log.d(TAG, "Error: ${it.exception!!.message}")
+                   }
+               }
         }
+
+        if(firebaseQuery.getUser() != null){
+            updateUI(firebaseQuery.getUser())
+            Log.d(TAG, "sign-in success")
+        } else {
+            //Login user
+            updateUI(null)
+            //firebaseQuery.loginUser(username,password)
+
+        }
+
 
     }
 
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
-    }
+    //public override fun onStart() {
+       // super.onStart()
+        // Check if user is signed in, if not call create user function
 
-    //Login method checking for empty text fields functions and a function to pass username and password to firebase authentication
-    private fun loginUser(){
-        if (username.text.toString().trim().isEmpty()){
-            username.error = "Please enter an email address"
-            username.requestFocus()
-            return
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()){
-            username.error = "Please enter a valid email address"
-            username.requestFocus()
-            return
-        }
-        if (password.text.toString().trim().isEmpty()){
-            password.error = "Please enter a Password"
-            password.requestFocus()
-            return
-        }
 
-        auth.signInWithEmailAndPassword(username.text.toString(), password.text.toString())
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    updateUI(null)
-                }
-            }
-    }
+
+
+   // }
+
+    //.addOnCompleteListener(this) { task ->
+    //  if (task.isSuccessful) {
+    //      val user = auth.currentUser
+    //     updateUI(user)
+    //  } else {
+    // If sign in fails, display a message to the user.
+    //       updateUI(null)
+    //  }
+    //  }
 
     //If a user is logged in thus not null they will be navigated to the dashboard activity, else are held at login with an failure toast
     private fun updateUI(currentUser: FirebaseUser?){

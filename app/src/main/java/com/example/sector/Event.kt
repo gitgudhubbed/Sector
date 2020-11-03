@@ -1,18 +1,20 @@
 package com.example.sector
 
-class Event(title: String, desc: String){
+import com.google.firebase.Timestamp
 
-    val title : String
-    val desc : String
-    //lateinit var date : String
+//Data class to store raw data from database into fields to then be inserted into views
 
-    //constructor() : this() {
-        //Empty constructor
-    //}
+data class Event(
+    val jobType: String = "",
+    val venueName: String = "",
+    val startDate : String = "",
+    val startTime : String = "",
+    val endDate : String = "",
+    val endTime : String = "",
+    val noOfStaff : Int = 0
+    )
 
-    init {
-        this.title = title
-        this.desc = desc
-    }
 
-}
+
+//val startDate: Timestamp? = null,
+//val endDate: Timestamp? = null

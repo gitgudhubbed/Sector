@@ -5,99 +5,57 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.activity_main.*
+
+private val firebaseQuery: FirebaseQuery = FirebaseQuery()
 
 
 class CreateAccount : AppCompatActivity() {
-
-    private lateinit var database: DocumentReference
-    private lateinit var auth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        auth = FirebaseAuth.getInstance()
-        //val db = FirebaseFirestore.getInstance()
 
         val saveButton = findViewById<View>(R.id.sign_up) as Button
-
         saveButton.setOnClickListener {
-            saveUser()
+            createUser(create_username,create_password,create_first_name,create_surname)
         }
     }
 
-    public override fun onStart() {
-        super.onStart()
-    }
+    //Function to create user, passing firebase authentifcation to query class and using User data class to create user object passing in submitted values, combining object and auth to write to database
+    private fun createUser(username:TextView,password: TextView, firstName : TextView, surname : TextView) {
+        val userFirstname = firstName.text.toString()
+        val userSurname = surname.text.toString()
+        val userEmail = username.text.toString()
+        User(userFirstname, userSurname, userEmail)
 
-
-    //Function to capture required personal details for firebase authentication and creation of corresponding "User" field in "Users" collection
-    private fun saveUser() {
-        val db = FirebaseFirestore.getInstance()
-
-        val firstName = create_first_name.text.toString()
-        val surname = create_surname.text.toString()
-        val email = create_username.text.toString()
-        val address = create_postal_address.text.toString()
-
-        val userProfileInfo = hashMapOf<String, Any>(
-            "firstName" to firstName,
-            "surname" to surname,
-            "emailAddress" to email,
-            "postalAddress" to address
-        )
-
-
-        if (create_username.text.toString().trim().isEmpty()) {
-            create_username.error = "Please enter an email address"
-            create_username.requestFocus()
-            return
-        }
-        if (!Patterns.EMAIL_ADDRESS.matcher(create_username.text.toString()).matches()) {
-            create_username.error = "Please enter a valid email address"
-            create_username.requestFocus()
-            return
-        }
-        if (create_password.text.toString().trim().isEmpty()) {
-            create_password.error = "Please enter a Password"
-            create_password.requestFocus()
-            return
-        }
-        if (create_postal_address.text.toString().trim().isEmpty()) {
-            create_postal_address.error = "Please enter a postal address"
-            create_postal_address.requestFocus()
-            return
-        }
-
-            //Firebase authentification function then creating an entry into the linked firestore database using the new users unique UID to hold relevant personal info of user
-            // - populated from a HashMap using the input data
-            auth.createUserWithEmailAndPassword(
-                create_username.text.toString(),
-                create_password.text.toString()
-            )
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        var user = auth.currentUser
-                        var userID = user!!.uid
-                        db.collection("Users").document(userID).set(userProfileInfo)
-                        startActivity(Intent(this, MainActivity::class.java))
-                    } else {
-                        Toast.makeText(
-                            baseContext,
-                            "Sign up failed please try again in a few minutes",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+        firebaseQuery.createUserAuth(username, password)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val newUser = User(userFirstname, userSurname, userEmail)
+                    //Returns firestore generated unique ID for database storage
+                    val userID = firebaseQuery.getUser()!!.uid
+                    firebaseQuery.firebaseDb.collection("Users").document(userID).set(newUser)
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    Toast.makeText(this, "Sign up failed please try again in a few minutes", Toast.LENGTH_LONG).show()
                 }
-
-
-        }
+            }
     }
+}
+
+
+
+
+
+
+
+
+
+
+
