@@ -28,7 +28,7 @@ import javax.xml.datatype.DatatypeConstants.MONTHS
         - Reduce Date & Time picker & update func code to remove duplicates
             - Combine Date & Time?
         - Export firebase functionality to seperate class and implement Event data class
-        - add if successful listener to create event & toast for user feedback to confirm event creation 
+        - add if successful listener to create event & toast for user feedback to confirm event creation
  */
 
 private val firebaseQuery: FirebaseQuery = FirebaseQuery()

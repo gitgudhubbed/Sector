@@ -13,30 +13,51 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp">
 
         <Button
             android:id="@+id/event_Button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/event" />
+            android:layout_height="75dp"
+            android:layout_margin="16dp"
+            android:text="@string/event"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_corner_button"/>
 
         <Button
             android:id="@+id/calendar_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/calendar" />
+            android:layout_height="75dp"
+            android:layout_margin="16dp"
+            android:text="@string/calendar"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_corner_button"/>
 
         <Button
             android:id="@+id/my_profile_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/my_profile" />
+            android:layout_height="75dp"
+            android:layout_margin="16dp"
+            android:text="@string/my_profile"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_corner_button"/>
 
         <Button
             android:id="@+id/create_event_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/create_event" />
+            android:layout_height="75dp"
+            android:layout_margin="16dp"
+            android:text="@string/create_event"
+            android:textColor="@color/colorBlack"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textStyle="bold"
+            android:background="@drawable/rounded_corner_button"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

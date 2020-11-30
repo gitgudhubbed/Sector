@@ -11,7 +11,8 @@ data class Event(
     val startTime : String = "",
     val endDate : String = "",
     val endTime : String = "",
-    val noOfStaff : Int = 0
+    val noOfStaff : Int = 0,
+    var expandable : Boolean = false
     )
 
 

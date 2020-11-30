@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 private val firebaseQuery: FirebaseQuery = FirebaseQuery()
 
@@ -32,12 +33,13 @@ class CreateAccount : AppCompatActivity() {
         val userFirstname = firstName.text.toString()
         val userSurname = surname.text.toString()
         val userEmail = username.text.toString()
-        User(userFirstname, userSurname, userEmail)
+        val userEvent : Array<Objects> = emptyArray()
+        User(userFirstname, userSurname, userEmail, userEvent)
 
         firebaseQuery.createUserAuth(username, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    val newUser = User(userFirstname, userSurname, userEmail)
+                    val newUser = User(userFirstname, userSurname, userEmail, userEvent)
                     //Returns firestore generated unique ID for database storage
                     val userID = firebaseQuery.getUser()!!.uid
                     firebaseQuery.firebaseDb.collection("Users").document(userID).set(newUser)

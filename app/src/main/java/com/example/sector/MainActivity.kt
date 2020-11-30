@@ -16,8 +16,6 @@ private const val TAG: String = "LOGIN_PAGE_LOG"
 
 class MainActivity : AppCompatActivity() {
 
-    //private lateinit var auth: FirebaseAuth
-
     private val firebaseQuery: FirebaseQuery = FirebaseQuery()
 
     private lateinit var signUpButton : Button
@@ -26,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //auth = FirebaseAuth.getInstance()
 
         signUpButton = findViewById(R.id.sign_up_button)
         signUpButton.setOnClickListener{
@@ -57,30 +53,8 @@ class MainActivity : AppCompatActivity() {
             //Login user
             updateUI(null)
             //firebaseQuery.loginUser(username,password)
-
         }
-
-
     }
-
-    //public override fun onStart() {
-       // super.onStart()
-        // Check if user is signed in, if not call create user function
-
-
-
-
-   // }
-
-    //.addOnCompleteListener(this) { task ->
-    //  if (task.isSuccessful) {
-    //      val user = auth.currentUser
-    //     updateUI(user)
-    //  } else {
-    // If sign in fails, display a message to the user.
-    //       updateUI(null)
-    //  }
-    //  }
 
     //If a user is logged in thus not null they will be navigated to the dashboard activity, else are held at login with an failure toast
     private fun updateUI(currentUser: FirebaseUser?){
