@@ -3,20 +3,14 @@ package com.example.sector
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.activity_event_dashboard.*
-import kotlinx.android.synthetic.main.event_item.*
-import kotlinx.android.synthetic.main.event_item.view.*
-import java.lang.reflect.Array.get
+
 
 /* On launch of event activity get list of all events from database & Convert into displayable information
     TO-DO

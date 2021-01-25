@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 private val firebaseQuery: FirebaseQuery = FirebaseQuery()
 
@@ -33,7 +34,7 @@ class CreateAccount : AppCompatActivity() {
         val userFirstname = firstName.text.toString()
         val userSurname = surname.text.toString()
         val userEmail = username.text.toString()
-        val userEvent : Array<Objects> = emptyArray()
+        val userEvent : Array <String> = emptyArray()
         User(userFirstname, userSurname, userEmail, userEvent)
 
         firebaseQuery.createUserAuth(username, password)

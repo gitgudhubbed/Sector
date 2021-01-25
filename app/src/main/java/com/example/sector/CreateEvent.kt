@@ -7,6 +7,7 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.DialogFragment
@@ -32,6 +33,7 @@ import javax.xml.datatype.DatatypeConstants.MONTHS
  */
 
 private val firebaseQuery: FirebaseQuery = FirebaseQuery()
+private const val TAG = "tag"
 
 class CreateEvent : AppCompatActivity(){
 
@@ -42,9 +44,10 @@ class CreateEvent : AppCompatActivity(){
         setContentView(R.layout.activity_create_event)
 
         val saveButton = findViewById<View>(R.id.create_event_button) as Button
+        val eventId = ""
 
         saveButton.setOnClickListener {
-            createEvent(job_type, venue_name, start_date,start_time,end_date,end_time,number_of_staff)
+            createEvent(eventId, job_type, venue_name, start_date,start_time,end_date,end_time,number_of_staff)
         }
 
         start_date!!.setOnClickListener {
@@ -130,7 +133,7 @@ class CreateEvent : AppCompatActivity(){
     }
 
 
-    private fun createEvent(jobType : Spinner, venueName : TextView, startDate : EditText, startTime : EditText,endDate : EditText, endTime : EditText, noOfStaff : EditText) {
+    private fun createEvent(eventId : String, jobType : Spinner, venueName : TextView, startDate : EditText, startTime : EditText,endDate : EditText, endTime : EditText, noOfStaff : EditText) {
         val jobType = jobType.selectedItem.toString()
         val venueName = venueName.text.toString()
         val noOfStaff = noOfStaff.text.toString()
@@ -156,12 +159,18 @@ class CreateEvent : AppCompatActivity(){
 
 
 
-        Event(jobType,venueName,startDate,startTime,endDate,endTime,intNoOfStaff)
+        Event(eventId,jobType,venueName,startDate,startTime,endDate,endTime,intNoOfStaff)
         //Event(jobType,venueName,finalStartDate,finalStartTime,finalEndDate,finalEndTime,intNoOfStaff)
 
-        val newEvent = Event(jobType,venueName,startDate,startTime,endDate,endTime,intNoOfStaff)
+        val newEvent = Event(eventId,jobType,venueName,startDate,startTime,endDate,endTime,intNoOfStaff)
+        //Add unique generated ID to event document
         firebaseQuery.firebaseDb.collection("Events").add(newEvent)
-        startActivity(Intent(this, MainActivity::class.java))
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                firebaseQuery.firebaseDb.collection("Events").document(documentReference.id)
+                    .update("eventId", documentReference.id)
+                startActivity(Intent(this, MainActivity::class.java))
+            }
 
     }
 

@@ -14,9 +14,14 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/margin_small"
             android:layout_height="254dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_margin="@dimen/margin_small"
+            android:layout_marginTop="4dp"
+            android:contentDescription="Sector company Logo"
+            android:src="@drawable/sector_logo_cropped"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/create_first_name"
@@ -54,15 +59,6 @@
             android:hint="@string/enter_a_password"
             android:importantForAutofill="no"></EditText>
 
-        <EditText
-            android:id="@+id/create_postal_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_margin="@dimen/margin_small"
-            android:hint="@string/enter_an_address"
-            android:importantForAutofill="no"
-            android:inputType="textPostalAddress" />
 
         <Button
             android:id="@+id/sign_up"
