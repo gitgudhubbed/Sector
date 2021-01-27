@@ -34,7 +34,7 @@ class CreateAccount : AppCompatActivity() {
         val userFirstname = firstName.text.toString()
         val userSurname = surname.text.toString()
         val userEmail = username.text.toString()
-        val userEvent : Array <String> = emptyArray()
+        val userEvent : List <String> = emptyList()
         User(userFirstname, userSurname, userEmail, userEvent)
 
         firebaseQuery.createUserAuth(username, password)
@@ -44,7 +44,7 @@ class CreateAccount : AppCompatActivity() {
                     //Returns firestore generated unique ID for database storage
                     val userID = firebaseQuery.getUser()!!.uid
                     firebaseQuery.firebaseDb.collection("Users").document(userID).set(newUser)
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, DashboardActivity::class.java))
                 } else {
                     Toast.makeText(this, "Sign up failed please try again in a few minutes", Toast.LENGTH_LONG).show()
                 }

@@ -6,7 +6,8 @@
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
     android:orientation="vertical"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:id="@+id/user_profile_activity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/user_profile_card"
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:paddingBottom="8dp"
-                android:text="My Profile"
+                android:text="@string/my_profile"
                 android:textColor="@color/colorBlack"
                 android:textSize="22sp"
                 android:textStyle="bold"/>
@@ -39,7 +40,7 @@
                 android:id="@+id/user_profile_expandable_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible">
+                android:visibility="gone">
                 <!-- First name Text Views  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
                 <TextView
                     android:id="@+id/first_name_label"
@@ -142,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
                     android:padding="16dp"
-                    android:text="My Jobs"
+                    android:text="@string/my_jobs"
                     android:textColor="@color/colorBlack"
                     android:textSize="22sp"
                     />
@@ -150,7 +151,7 @@
                     android:id="@+id/user_event_expandable_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:background="@color/colorGrey">
 
                     <androidx.recyclerview.widget.RecyclerView

@@ -12,5 +12,5 @@ data class User(
     val firstName : String = "",
     val surname : String = "",
     val emailAddress : String = "",
-    val userEvents : Array <String>
+    val userEvents : List <String>
 )

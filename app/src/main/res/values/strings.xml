@@ -31,6 +31,7 @@
     <string name="create_event">Create Event</string>
     <string name="start_date">Start Date</string>
     <string name="user_name">First Name:</string>
+    <string name="my_jobs">My Jobs</string>
 
     <string-array name="job_type_list">
         <item>Door</item>

@@ -169,7 +169,7 @@ class CreateEvent : AppCompatActivity(){
                 Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
                 firebaseQuery.firebaseDb.collection("Events").document(documentReference.id)
                     .update("eventId", documentReference.id)
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, DashboardActivity::class.java))
             }
 
     }

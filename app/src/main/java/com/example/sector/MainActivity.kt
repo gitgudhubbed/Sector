@@ -46,14 +46,14 @@ class MainActivity : AppCompatActivity() {
                }
         }
 
-        if(firebaseQuery.getUser() != null){
-            updateUI(firebaseQuery.getUser())
-            Log.d(TAG, "sign-in success")
-        } else {
+       // if(firebaseQuery.getUser() != null){
+       //     updateUI(firebaseQuery.getUser())
+       //     Log.d(TAG, "sign-in success")
+      //  } else {
             //Login user
-            updateUI(null)
+      //      updateUI(null)
             //firebaseQuery.loginUser(username,password)
-        }
+        //}
     }
 
     //If a user is logged in thus not null they will be navigated to the dashboard activity, else are held at login with an failure toast
